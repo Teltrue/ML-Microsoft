@@ -13,19 +13,19 @@ def view_inventory(inventory):
         print('\n Current inventory: ')
         for items, quantity in inventory.items():
             print(f'{items}:{quantity}')
-            
+
 def add_product(inventory):
     product = input('\n Please enter the name of the product: ').strip()
     category = input('Please enter the product category: ').strip()
 
     if category not in inventory['category']:
         inventory['category'][category] = []
-    
+
     if product in inventory['category'][category]:
         print(f'{product} already exists. Would you like to add its quantity or change its price?')
     else:
         inventory['category'][category].append(product)
-        
+
         try:
             quantity = int(input("Enter the quantity of the product: ").strip())
             if quantity < 0:
@@ -33,7 +33,7 @@ def add_product(inventory):
             else:
                 inventory['quantity'][product] = quantity
                 print(f"Quantity has been updated to {quantity}")
-            
+
             price = float(input("Enter the price: ").strip())
             if price < 0:
                 print("Are we on promo?")
@@ -54,7 +54,7 @@ def remove_product(inventory):
                 del inventory['quantity'][product]
     else:
         print(f'{product} does not exist')
-        
+
 def search(inventory):
     product = input("Enter the product to search for: ").strip().lower()
     category = input('Enter category: ').strip().lower()
